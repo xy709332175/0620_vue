@@ -20,6 +20,7 @@
     },
 
     methods: {
+      // 添加功能
       add() {
         const title = this.title.trim()
         const todo = {
