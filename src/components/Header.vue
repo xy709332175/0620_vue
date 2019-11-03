@@ -23,12 +23,16 @@
       // 添加功能
       add() {
         const title = this.title.trim()
+        // 合法性检测
+        if(title === '') return
+
         const todo = {
           id: Date.now(),
           complete: false,
           title,
         }
         this.addTodo(todo)
+        this.title = ''
       }
     }
   }
