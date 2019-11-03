@@ -1,11 +1,11 @@
 <template>
   <div>
-      <li>
+      <li :style="{background: bgColor}" @mouseenter="handleEnter(true)" @mouseleave="handleEnter(false)">
         <label>
           <input type="checkbox" v-model="todo.complete"/>
           <span>{{todo.title}}</span>
         </label>
-        <button class="btn btn-danger" style="display:none">删除</button>
+        <button class="btn btn-danger" v-show="isShow" @click="deleteItem">删除</button>
       </li>
   </div>
 </template>
@@ -15,7 +15,33 @@
     name: 'Item',
     props: {
       todo: Object,
-    }
+      deleteTodo: Function,
+    },
+    data () {
+      return {
+        bgColor: 'white',
+        isShow: false
+      }
+    },
+    methods: {
+      handleEnter (isEnter) {
+        if(isEnter) {
+          this.bgColor = '#cccccc'
+          this.isShow = true
+        } else {
+          this.bgColor = 'white'
+          this.isShow = false
+        }
+      },
+
+      deleteItem() {
+        if(confirm('确定删除?')) {
+          this.deleteTodo(this.todo.id)
+        }
+      }
+    },
+
+
   }
 </script>
 
@@ -42,7 +68,7 @@
 
   li button {
     float: right;
-    display: none;
+    /* display: none; */
     margin-top: 3px;
   }
 

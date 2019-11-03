@@ -2,7 +2,7 @@
   <div class="todo-container">
     <div class="todo-wrap">
       <Header :addTodo="addTodo"/>
-      <List :todos="todos"/>
+      <List :todos="todos" :deleteTodo="deleteTodo"/>
       <Footer/>
     </div>
   </div>
@@ -27,8 +27,14 @@ export default {
   },
 
   methods: {
+    // 添加
     addTodo(todo) {
       this.todos.unshift(todo)
+    },
+    // 更新
+    deleteTodo (id) {
+      // 删除完需要接受数据进行更新
+      this.todos = this.todos.filter(todo => id !== todo.id)
     }
   },
 
