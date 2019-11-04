@@ -1,10 +1,7 @@
 <template>
   <div class="todo-container">
     <div class="todo-wrap">
-      <!-- <Header :addTodo="addTodo"/> -->
-      <!-- 通过自定义事件实现添加功能 -->
-      <!-- 在父组件中给子组件对象绑定自定义事件监听 -->
-      <Header @addTodo="addTodo"/>
+      <Header :addTodo="addTodo"/>
       <List :todos="todos" :deleteTodo="deleteTodo" :updataTodo="updateTodo"/>
       <Footer :todos="todos" :selectAll="selectAll" :clearAllComplete="clearAllComplete"/>
     </div>
@@ -12,7 +9,6 @@
 </template>
 
 <script>
-  import Vue from 'vue';
   import Header from './components/Header'
   import List from './components/List'
   import Footer from './components/Footer'
@@ -21,7 +17,7 @@
 
     data () {
       return {
-        // 可能有多个数据
+        // 更能有多个数据
         todos: [],
         xxx: 2
       }

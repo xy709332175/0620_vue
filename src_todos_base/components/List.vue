@@ -1,6 +1,5 @@
 <template>
     <ul class="todo-main">
-      <!-- 遍历添加多个Item 并添加删除,更新功能-->
       <Item v-for="todo in todos" :key="todo.id" :todo="todo" :deleteTodo="deleteTodo" :updataTodo="updateTodo"/>
     </ul>
 </template>
@@ -9,7 +8,6 @@
 import Item from './Item'
   export default {
     name: 'List',
-    // 声明接收的标签属性: 属性名 使接收到的属性会成为当前组件对象的属性: this.todos
     props: ['todos','deleteTodo','updateTodo'],
     components: {
       Item,

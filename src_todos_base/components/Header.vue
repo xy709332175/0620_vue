@@ -7,12 +7,11 @@
 <script type="text/ecmascript-6">
   export default {
     name: 'Header',
-    // 声明接收属性: 属性名/值的类型/属性的必要性
     props: {
-      // addTodo: {
-      //   type: Function,
-      //   required: true,
-      // }
+      addTodo: {
+        type: Function,
+        required: true,
+      }
     },
     data () {
       return {
@@ -29,15 +28,10 @@
 
         const todo = {
           id: Date.now(),
-          // 复选框是否选中
           complete: false,
           title,
         }
-        // 添加
-        // this.addTodo(todo)
-        // 分发自定义事件监听
-        this.$emit('addTodo',todo)
-        // 添加后清空输入框
+        this.addTodo(todo)
         this.title = ''
       }
     }

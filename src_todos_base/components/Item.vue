@@ -1,12 +1,13 @@
 <template>
-<!-- 鼠标移入移出的CSS效果 -->
-  <li :style="{background: bgColor}" @mouseenter="handleEnter(true)" @mouseleave="handleEnter(false)">
-    <label>
-      <input type="checkbox" v-model="isCheck"/>
-      <span>{{todo.title}}</span>
-    </label>
-    <button class="btn btn-danger" v-show="isShow" @click="deleteItem">删除</button>
-  </li>
+  <div>
+    <li :style="{background: bgColor}" @mouseenter="handleEnter(true)" @mouseleave="handleEnter(false)">
+      <label>
+        <input type="checkbox" v-model="isCheck"/>
+        <span>{{todo.title}}</span>
+      </label>
+      <button class="btn btn-danger" v-show="isShow" @click="deleteItem">删除</button>
+    </li>
+  </div>
 </template>
 
 <script type="text/ecmascript-6">
@@ -19,12 +20,11 @@
     },
     data () {
       return {
-        // 初始状态
         bgColor: 'white',
         isShow: false
       }
     },
-    // 计算属性: 计算是否有已被勾选项 并更新
+
     computed: {
       isCheck: {
         get () {
@@ -37,7 +37,6 @@
     },
 
     methods: {
-      // 移入移出判断
       handleEnter (isEnter) {
         if(isEnter) {
           this.bgColor = '#cccccc'
