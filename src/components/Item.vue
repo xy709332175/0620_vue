@@ -1,12 +1,12 @@
 <template>
   <div>
-      <li :style="{background: bgColor}" @mouseenter="handleEnter(true)" @mouseleave="handleEnter(false)">
-        <label>
-          <input type="checkbox" v-model="todo.complete"/>
-          <span>{{todo.title}}</span>
-        </label>
-        <button class="btn btn-danger" v-show="isShow" @click="deleteItem">删除</button>
-      </li>
+    <li :style="{background: bgColor}" @mouseenter="handleEnter(true)" @mouseleave="handleEnter(false)">
+      <label>
+        <input type="checkbox" v-model="isCheck"/>
+        <span>{{todo.title}}</span>
+      </label>
+      <button class="btn btn-danger" v-show="isShow" @click="deleteItem">删除</button>
+    </li>
   </div>
 </template>
 
@@ -16,6 +16,7 @@
     props: {
       todo: Object,
       deleteTodo: Function,
+      updateTodo: Function
     },
     data () {
       return {
@@ -23,6 +24,18 @@
         isShow: false
       }
     },
+
+    computed: {
+      isCheck: {
+        get () {
+          return this.todo.complete
+        },
+        set (value) {
+          this.updateTodo(this.todo,value)
+        }
+      }
+    },
+
     methods: {
       handleEnter (isEnter) {
         if(isEnter) {
