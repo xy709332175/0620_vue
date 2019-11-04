@@ -4,8 +4,9 @@
       <!-- <Header :addTodo="addTodo"/> -->
       <!-- 通过自定义事件实现添加功能 -->
       <!-- 在父组件中给子组件对象绑定自定义事件监听 -->
-      <Header @addTodo="addTodo"/>
-      <List :todos="todos" :deleteTodo="deleteTodo" :updataTodo="updateTodo"/>
+      <!-- <Header @addTodo="addTodo"/> -->
+      <Header ref="header"/>
+      <List :todos="todos" :updataTodo="updateTodo"/>
       <Footer :todos="todos" :selectAll="selectAll" :clearAllComplete="clearAllComplete"/>
     </div>
   </div>
@@ -29,12 +30,22 @@
 
     // 异步操作,读取数据,但是还没有存储,刷新就没有
     mounted () {
+
+      // 给header组件对象绑定自定义事件监听
+      this.$refs.header.$on('addTodo',this.addTodo)
+      // 通过事件总线对象绑定事件监听
+      this.$eventBus.$on('deleteTodo',this.deleteTodo)
+
       setTimeout( () => {
         // 读取local中保存的todos数据
         const todos = JSON.parse(localStorage.getItem('todos_key') || '[]')
         // 更新数据
         this.todos = todos
       },1000)
+    },
+    // 在组件消失前,解绑事件监听
+    beforeDestroy () {
+      this.$eventBus.$off('deleteTodo')
     },
 
     // 深度监视  deep:true

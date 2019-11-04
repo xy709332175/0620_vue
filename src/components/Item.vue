@@ -14,7 +14,6 @@
     name: 'Item',
     props: {
       todo: Object,
-      deleteTodo: Function,
       updateTodo: Function
     },
     data () {
@@ -50,7 +49,9 @@
 
       deleteItem() {
         if(confirm('确定删除?')) {
-          this.deleteTodo(this.todo.id)
+          // this.deleteTodo(this.todo.id)
+          // 通过全局事件总线分发事件
+          this.$eventBus.$emit('deleteTodo',this.todo.id)
         }
       }
     },
