@@ -6,8 +6,14 @@
       <!-- 在父组件中给子组件对象绑定自定义事件监听 -->
       <!-- <Header @addTodo="addTodo"/> -->
       <Header ref="header"/>
-      <List :todos="todos" :updataTodo="updateTodo"/>
-      <Footer :todos="todos" :selectAll="selectAll" :clearAllComplete="clearAllComplete"/>
+      <List :todos="todos" :updateTodo="updateTodo"/>
+      <Footer>
+        <input type="checkbox" v-model="isCheckAll" slot="left"/>
+        <span slot="center">
+          <span>已完成{{completeSize}}</span> / 全部{{todos.length}}
+        </span>
+        <button class="btn btn-danger" v-show="completeSize>0" @click="clearAllComplete" slot="right">清除已完成任务</button>
+      </Footer>
     </div>
   </div>
 </template>
@@ -28,6 +34,21 @@
       }
     },
 
+    computed: {
+      completeSize () {
+        return this.todos.reduce((pre, todo) => pre + (todo.complete ? 1 : 0), 0)
+      },
+
+      isCheckAll: {
+        get () {
+          return this.todos.length === this.completeSize && this.completeSize > 0 
+        },
+        set (value) {
+          this.selectAll(value)
+        }
+      }
+    },
+
     // 异步操作,读取数据,但是还没有存储,刷新就没有
     mounted () {
 
@@ -43,6 +64,7 @@
         this.todos = todos
       },1000)
     },
+    
     // 在组件消失前,解绑事件监听
     beforeDestroy () {
       this.$eventBus.$off('deleteTodo')

@@ -1,7 +1,7 @@
 <template>
     <ul class="todo-main">
       <!-- 遍历添加多个Item 并添加删除,更新功能-->
-      <Item v-for="todo in todos" :key="todo.id" :todo="todo" :updataTodo="updateTodo"/>
+      <Item v-for="todo in todos" :key="todo.id" :todo="todo" :updateTodo="updateTodo"/>
     </ul>
 </template>
 
