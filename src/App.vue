@@ -3,7 +3,7 @@
     <div class="todo-wrap">
       <Header :addTodo="addTodo"/>
       <List :todos="todos" :deleteTodo="deleteTodo"/>
-      <Footer/>
+      <Footer :todos="todos" :selectAll="selectAll" :clearAllComplete="clearAllComplete"/>
     </div>
   </div>
 </template>
@@ -35,7 +35,16 @@ export default {
     deleteTodo (id) {
       // 删除完需要接受数据进行更新
       this.todos = this.todos.filter(todo => id !== todo.id)
+    },
+    // 全选/全不选
+    selectAll (check) {
+      this.todos.forEach (todo => todo.complete = check)
+    },
+    // 清楚已完成任务
+    clearAllComplete () {
+      this.todos = this.todos.filter(todo => !todo.complete)
     }
+
   },
 
 
