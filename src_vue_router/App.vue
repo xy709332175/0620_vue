@@ -17,9 +17,12 @@
       <div class="col-xs-6">
         <div class="panel">
           <div class="panel-body">
-            <keep-alive exclude="Home">
-              <router-view msg="abc"/>
-            </keep-alive>
+            <!-- <div data-v-2c11fd19>
+              <h2 data-v-2c11fd19>About</h2>
+              <h3 data-v-2c11fd19>abc</h3>
+              <input data-v-2c11fd19 type="text" />
+            </div> -->
+            <router-view/>
           </div>
         </div>
       </div>

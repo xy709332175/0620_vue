@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li>ID:{{id}} -- {{$route.params.id}}</li>
+    <li>ID:{{$route.params.id}}</li>
     <li>TITLE:{{detail.title}}</li>
     <li>CONTENT:{{detail.content}}</li>
   </ul>
@@ -13,9 +13,6 @@
     {id: 5, title: 'message005', content: 'message content005'},
   ]
   export default {
-    
-    props: ['id'],
-
     data () {
       return {
         detail: {}
@@ -24,7 +21,7 @@
 
     mounted () {
       setTimeout(() => {
-        const id = this.id * 1
+        const id = this.$route.params.id * 1
         const detail = allDetails.find(detail => detail.id === id)
         this.detail = detail
       }, 1000);
