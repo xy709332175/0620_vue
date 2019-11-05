@@ -1,49 +1,37 @@
 <template>
   <div>
-    <p>clicked: {{count}} times, count is {{evenOrOdd}}</p>
-
-    <button @click="increment">+</button>
-    <button @click="decrement">-</button>
-    <button @click="incrementIfOdd">increment if odd</button>
-    <button @click="incrementAsync">increment async</button>
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-8">
+        <div class="page-header">
+          <h2>Router Basic - 01</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2 col-xs-offset-2">
+        <div class="list-group">
+          <router-link class="list-group-item" to="/about">About</router-link>
+          <router-link class="list-group-item" to="/home">Home</router-link>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="panel">
+          <div class="panel-body">
+            <!-- <div data-v-2c11fd19>
+              <h2 data-v-2c11fd19>About</h2>
+              <h3 data-v-2c11fd19>abc</h3>
+              <input data-v-2c11fd19 type="text" />
+            </div> -->
+            <router-view/>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-  import {mapState, mapActions, mapGetters, mapMutations} from 'vuex'
-
-  export default {
-
-
-    computed: {
-      ...mapState(['count']),
-      ...mapGetters(['evenOrOdd'])
-    },
-
-    methods: {
-      ...mapMutations({
-        increment: 'INCREMENT',
-        decrement: 'DECREMENT'
-      }),
-      ...mapActions(['incrementIfOdd','incrementAsync'])
-    }
-
-
-    // methods: {
-    //   increment() {
-    //     this.$store.commit('INCREMENT')
-    //   },
-    //   decrement() {
-    //     this.$store.commit('DECREMENT')
-    //   },
-    //   incrementIfOdd() {
-    //     this.$store.dispatch('incrementIfOdd')
-    //   },
-    //   incrementAsync() {
-    //     this.$store.dispatch('incrementAsync')
-    //   }
-    // },
-  }
+export default {};
 </script>
 
 <style>
