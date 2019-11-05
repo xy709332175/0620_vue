@@ -35,7 +35,7 @@ export default {
       try {
         // 发请求
         const response = await axios({
-          url: "https://api.github.com/search/users",
+          url: "/api/search/users",
           params: {
             q: searchName
           }
