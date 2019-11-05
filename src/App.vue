@@ -10,37 +10,39 @@
 </template>
 
 <script>
+  import {mapState, mapActions, mapGetters, mapMutations} from 'vuex'
 
   export default {
-    data() {
-      return {
-        count : 0,
-      }
-    },
+
 
     computed: {
-      evenOrOdd () {
-        return this.count % 2 === 0 ? '偶数' : '奇数'
-      }
+      ...mapState(['count']),
+      ...mapGetters(['evenOrOdd'])
     },
+
     methods: {
-      increment() {
-        this.count++
-      },
-      decrement() {
-        this.count--
-      },
-      incrementIfOdd() {
-        if(this.count % 2 === 1) {
-          this.count ++
-        }
-      },
-      incrementAsync() {
-        setTimeout(() => {
-          this.count++
-        },1000)
-      }
-    },
+      ...mapMutations({
+        increment: 'INCREMENT',
+        decrement: 'DECREMENT'
+      }),
+      ...mapActions(['incrementIfOdd','incrementAsync'])
+    }
+
+
+    // methods: {
+    //   increment() {
+    //     this.$store.commit('INCREMENT')
+    //   },
+    //   decrement() {
+    //     this.$store.commit('DECREMENT')
+    //   },
+    //   incrementIfOdd() {
+    //     this.$store.dispatch('incrementIfOdd')
+    //   },
+    //   incrementAsync() {
+    //     this.$store.dispatch('incrementAsync')
+    //   }
+    // },
   }
 </script>
 
